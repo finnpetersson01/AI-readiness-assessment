@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Project Readiness Assessment</title>
+  <link rel="stylesheet" href="styles.css?v=readiness-calibration-20260804b">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-kicker">AI delivery toolkit</span>
+        <h1>Project Readiness</h1>
+        <p>Consultant workspace</p>
+      </div>
+
+      <nav class="nav" aria-label="Assessment workflow">
+        <button class="nav-item active" data-view="intake">1. Project upload</button>
+        <button class="nav-item" data-view="cards">2. Project cards</button>
+        <button class="nav-item" data-view="requirements">3. Requirements</button>
+        <button class="nav-item" data-view="review">4. Consultant review</button>
+        <button class="nav-item" data-view="assessment">5. Assessment</button>
+        <button class="nav-item" data-view="results">6. Results</button>
+        <button class="nav-item" data-view="library">7. Library entry</button>
+        <button class="nav-item catalog-nav" data-view="catalog">Catalog</button>
+      </nav>
+
+      <div class="summary-card">
+        <span>Assessment setup</span>
+        <strong id="projectCount">0 projects</strong>
+        <div class="progress"><div id="workflowProgress"></div></div>
+        <p id="workflowStatus">Load the demonstration projects.</p>
+      </div>
+    </aside>
+
+    <main>
+      <header class="workspace-header">
+        <nav class="workspace-breadcrumb" aria-label="Current workflow location">
+          <span>Assessment</span>
+          <span class="breadcrumb-divider" aria-hidden="true">/</span>
+          <strong id="workspaceStage">Project upload</strong>
+        </nav>
+        <div class="workspace-meta" aria-label="Workspace status">
+          <span id="workspaceProjectSummary" class="workspace-project-summary">0 selected projects</span>
+          <span class="workspace-draft">Working draft</span>
+          <button id="openModelSettings" class="settings-button" type="button" aria-label="Open AI settings" title="AI settings">&#9881;</button>
+          <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+            <span class="theme-icon sun" aria-hidden="true">&#9728;</span>
+            <span class="theme-knob" aria-hidden="true"></span>
+            <span class="theme-icon moon" aria-hidden="true">&#9790;</span>
+          </button>
+        </div>
+      </header>
+      <section id="intake" class="view active">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Project-first readiness assessment</p>
+            <h2>Import the selected project set</h2>
+            <p class="page-copy">Upload standardized project workbooks from the preceding client selection process. Three external demo workbooks are available to test the complete import and assessment pipeline.</p>
+          </div>
+          <div class="actions">
+            <button id="loadDemo" class="secondary" type="button">Load 3 demo projects</button>
+            <button id="continueToCards" class="primary-action" type="button">Continue to project cards</button>
+          </div>
+        </div>
+
+        <section class="principle-strip">
+          <div><strong>Start after selection</strong><span>Projects are already strategically interesting</span></div>
+          <div><strong>Review before scoring</strong><span>Consultant retains control</span></div>
+          <div><strong>Assess only relevant prerequisites</strong><span>Dynamic client questionnaire</span></div>
+        </section>
+
+        <div class="two-column">
+          <section class="panel upload-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Project workbook import</p>
+                <h3>Upload selected projects</h3>
+              </div>
+              <span class="outline-badge live">Active</span>
+            </div>
+            <div id="projectUploadZone" class="upload-placeholder" aria-label="Excel project upload area">
+              <span class="upload-file-mark">XLSX</span>
+              <strong>Standardized project workbooks</strong>
+              <p>Select one or several project files. The prototype validates the workbook structure and imports valid projects into the assessment set.</p>
+              <input id="projectFileInput" class="visually-hidden" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" multiple>
+              <div class="upload-actions">
+                <button id="chooseProjectFiles" class="secondary" type="button">Choose project files</button>
+                <button id="openDemoFolder" class="secondary subtle" type="button">Open demo folder</button>
+              </div>
+              <span class="upload-drop-note">or drop files into this area</span>
+            </div>
+            <div id="projectImportStatus" class="project-import-status" aria-live="polite"></div>
+            <div class="demo-file-links">
+              <strong>External demo workbooks</strong>
+              <a href="demo-project-files/DEMO-01.xlsx" download>Service request resolution</a>
+              <a href="demo-project-files/DEMO-02.xlsx" download>Internal knowledge access</a>
+              <a href="demo-project-files/DEMO-03.xlsx" download>Email order extraction</a>
+            </div>
+            <p id="intakeHint" class="inline-note">Download and upload the demo workbooks, or use “Load 3 demo projects” for a faster walkthrough.</p>
+          </section>
+
+          <section class="panel preview-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Demonstration scenario</p>
+                <h3>Nordstern Business Solutions</h3>
+              </div>
+              <span class="outline-badge">Next phase</span>
+            </div>
+            <div class="project-definition">
+              <div><span>Company</span><strong>Medium-sized B2B distributor and service provider</strong></div>
+              <div><span>Operating context</span><strong>DACH region, approximately 850 employees</strong></div>
+              <div><span>Shared challenge</span><strong>Growing operational volume and fragmented knowledge</strong></div>
+              <div><span>Selected projects</span><strong>Service resolution, knowledge access and email-order capture</strong></div>
+            </div>
+            <p class="callout">The three projects share parts of the company context but require different data, systems, controls and operating processes.</p>
+          </section>
+        </div>
+
+        <section class="project-list-section">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Selected projects</p>
+              <h3>Readiness assessment set</h3>
+            </div>
+            <span id="projectListStatus">No projects added yet</span>
+          </div>
+          <div id="projectList" class="project-list empty-state">
+            <p>Load the demonstration projects to populate the assessment pipeline.</p>
+          </div>
+        </section>
+      </section>
+
+      <section id="cards" class="view">
+        <div class="page-head compact-head">
+          <div>
+            <p class="eyebrow">Step 2</p>
+            <h2>Confirm project cards</h2>
+            <p class="page-copy">Review the normalized project information that will guide requirement selection. Confirmed facts, assumptions and unknowns remain distinct.</p>
+          </div>
+          <div class="actions"><button id="continueToRequirements" class="primary-action" type="button">Continue to requirements</button></div>
+        </div>
+        <div id="normalizedProjectCards" class="normalized-project-grid empty-state"><p>Load the demonstration projects first.</p></div>
+      </section>
+
+      <section id="requirements" class="view">
+        <div class="page-head compact-head">
+          <div>
+            <p class="eyebrow">Step 3 · LLM-supported selection</p>
+            <h2>Review proposed requirement selection</h2>
+            <p class="page-copy">Generate a project-specific proposal from the controlled catalog or retain the curated demonstration profile. Catalog requirements and proposed additions remain visibly separate.</p>
+          </div>
+          <div class="actions"><button id="openReview" class="primary-action" type="button">Open consultant review</button></div>
+        </div>
+        <section class="method-banner">
+          <div><span>Catalog</span><strong>110 families and variants</strong></div>
+          <div><span>Live selection policy</span><strong>Distinct prerequisites, not a fixed limit</strong></div>
+          <div><span>Decision</span><strong>Consultant approval required</strong></div>
+        </section>
+        <section class="llm-selection-panel" aria-label="Live requirement generation">
+          <div class="llm-selection-heading">
+            <div>
+              <p class="eyebrow">Live requirement generation</p>
+              <h3>Generate a proposal with LiteLLM</h3>
+              <p>The model receives the selected project and the controlled requirement catalog. It prioritizes a concise, ranked set of requirements; its output remains a proposal until the consultant confirms it in Step 4.</p>
+            </div>
+            <span id="requirementLlmStatus" class="llm-connection-status checking">Checking connection</span>
+          </div>
+          <div class="llm-selection-controls">
+            <label>Project<select id="requirementGenerationProject" disabled><option value="">Load demo projects first</option></select></label>
+            <button id="generateRequirements" class="primary-action" type="button" disabled>Generate requirements</button>
+            <button id="cancelRequirementGeneration" class="secondary" type="button" hidden>Cancel generation</button>
+            <button id="restoreReferenceProfile" class="secondary" type="button" disabled>Restore curated profile</button>
+          </div>
+          <div id="requirementGenerationMessage" class="llm-selection-message">Start the prototype through <strong>Start Prototype</strong> (<code>.command</code> on macOS, <code>.cmd</code> on Windows) and add the LiteLLM key and base URL to <strong>llm.env</strong>.</div>
+          <div id="requirementGenerationProgress" class="generation-progress" hidden>
+            <div><strong id="requirementGenerationStage">Preparing project context</strong><span id="requirementGenerationTimer">Elapsed 00:00</span></div>
+            <div class="generation-progress-track" aria-hidden="true"><span></span></div>
+            <p id="requirementGenerationEstimate">Typical duration: 60–120 seconds</p>
+          </div>
+        </section>
+        <div id="requirementSelectionSummary" class="selection-summary-grid empty-state"><p>Load the demonstration projects first.</p></div>
+      </section>
+
+      <section id="review" class="view">
+        <div class="page-head compact-head">
+          <div>
+            <p class="eyebrow">Step 4 · Consultant control</p>
+            <h2>Confirm each project requirement profile</h2>
+            <p class="page-copy">Include or exclude requirements and adjust importance or required levels. New requirements must be approved separately before they can enter the client assessment.</p>
+          </div>
+          <div class="actions">
+            <button id="addConsultantRequirement" class="secondary" type="button">Add requirement</button>
+            <button id="confirmCurrentProfile" class="secondary" type="button">Confirm current profile</button>
+            <button id="continueToAssessment" class="primary-action" type="button">Continue to assessment</button>
+          </div>
+        </div>
+        <div id="reviewProjectTabs" class="project-tabs" role="tablist" aria-label="Projects"></div>
+        <section id="reviewStatusBar" class="review-status-bar"></section>
+        <div id="requirementReviewList" class="requirement-review-list empty-state"><p>Load the demonstration projects first.</p></div>
+      </section>
+
+      <section id="assessment" class="view">
+        <div class="page-head compact-head">
+          <div>
+            <p class="eyebrow">Step 5 · Client assessment</p>
+            <h2>Assess the approved prerequisites</h2>
+            <p class="page-copy">Select observable statements together with the client. Unknown answers remain visible and reduce evidence coverage rather than receiving an average score.</p>
+          </div>
+          <div class="actions">
+            <button id="loadDemoAnswers" class="secondary" type="button">Load demo responses</button>
+            <button id="calculateResults" class="primary-action" type="button">Calculate results</button>
+          </div>
+        </div>
+        <div id="assessmentProjectTabs" class="project-tabs" role="tablist" aria-label="Assessment projects"></div>
+        <section id="assessmentProgress" class="assessment-progress"></section>
+        <div id="assessmentQuestionList" class="assessment-list empty-state"><p>Confirm the requirement profiles before starting the assessment.</p></div>
+      </section>
+
+      <section id="results" class="view">
+        <div class="page-head compact-head">
+          <div>
+            <p class="eyebrow">Step 6 · Transparent output</p>
+            <h2>Compare readiness and evidence</h2>
+            <p class="page-copy">The readiness score combines weighted baseline maturity with nonlinear penalties for unmet critical requirements. Evidence coverage remains separate so unresolved information is never treated as readiness.</p>
+          </div>
+          <div class="actions">
+            <button id="backToAssessment" class="secondary" type="button">Edit assessment</button>
+            <button id="openLibraryEntry" class="primary-action" type="button">Prepare library entry</button>
+          </div>
+        </div>
+        <div id="resultSummary" class="result-summary empty-state"><p>Complete or load assessment responses to calculate results.</p></div>
+      </section>
+
+      <section id="library" class="view">
+        <div class="page-head compact-head">
+          <div>
+            <p class="eyebrow">Step 7 · Organizational learning</p>
+            <h2>Prepare the reusable project record</h2>
+            <p class="page-copy">Review and enrich a completed project before returning it to the use case library. The assessment remains unchanged; edits on this page apply only to the exported library record.</p>
+          </div>
+          <div class="actions">
+            <button id="resetLibraryDraft" class="secondary" type="button">Reset draft</button>
+            <button id="exportLibraryEntry" class="primary-action" type="button">Export to use case library</button>
+          </div>
+        </div>
+        <section class="library-method-banner" aria-label="Library export status">
+          <div><span>Current MVP</span><strong>Downloads a structured JSON record</strong></div>
+          <div><span>Future integration</span><strong>Submits the same record to the central library</strong></div>
+          <div><span>Control</span><strong>Consultant reviews every reusable field</strong></div>
+        </section>
+        <div id="libraryProjectTabs" class="project-tabs" role="tablist" aria-label="Library projects"></div>
+        <section id="libraryStatusBar" class="library-status-bar"></section>
+        <div id="libraryEditor" class="library-editor empty-state"><p>Load the demonstration projects to prepare a library entry.</p></div>
+      </section>
+
+      <section id="catalog" class="view">
+        <div class="page-head compact-head">
+          <div>
+            <p class="eyebrow">Reference library</p>
+            <h2>Browse the use case and requirement catalog</h2>
+            <p class="page-copy">The controlled catalog supports consistent requirement selection. It combines reusable requirement families with narrower variants for recognisable project patterns.</p>
+          </div>
+        </div>
+        <section id="catalogOverview" class="catalog-overview" aria-label="Catalog overview"></section>
+
+        <section class="catalog-section">
+          <header class="catalog-section-head">
+            <div><p class="eyebrow">Current seed library</p><h3>Project and use case patterns</h3><p>These are the initial reusable patterns used to demonstrate the project-first workflow. Completed project records can later extend this library.</p></div>
+          </header>
+          <div id="useCaseCatalogList" class="usecase-catalog-grid"></div>
+        </section>
+
+        <section class="catalog-section requirement-catalog-section">
+          <header class="catalog-section-head">
+            <div><p class="eyebrow">Controlled prerequisite library</p><h3>Requirements</h3><p>Search the catalog before defining a project profile. Families express a reusable condition; variants give it a more specific, assessable formulation.</p></div>
+            <button id="clearCatalogFilters" class="secondary" type="button">Clear filters</button>
+          </header>
+          <div class="catalog-controls">
+            <label>Search requirements<input id="catalogSearch" type="search" placeholder="Title, condition, tag or ID"></label>
+            <label>Category<select id="catalogCategory"><option value="">All categories</option></select></label>
+            <label>Entry type<select id="catalogType"><option value="">Families and variants</option><option value="family">Requirement families</option><option value="variant">Granular variants</option></select></label>
+          </div>
+          <div id="catalogResultSummary" class="catalog-result-summary"></div>
+          <div id="requirementCatalogList" class="requirement-catalog-list"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div id="modelSettingsModal" class="assistant-modal" hidden>
+    <section class="assistant-dialog settings-dialog" role="dialog" aria-modal="true" aria-labelledby="modelSettingsTitle">
+      <header class="assistant-dialog-head">
+        <div>
+          <p class="eyebrow">Workspace configuration</p>
+          <h3 id="modelSettingsTitle">AI settings</h3>
+          <p>Assign an available model to each AI-supported workflow.</p>
+        </div>
+        <button id="closeModelSettings" class="icon-button" type="button" aria-label="Close AI settings">&times;</button>
+      </header>
+      <div class="settings-connection-row">
+        <div>
+          <span>LiteLLM connection</span>
+          <strong id="settingsConnectionStatus">Checking connection</strong>
+          <p id="settingsConnectionMessage">Checking the local connector and available models.</p>
+        </div>
+        <button id="refreshRequirementModels" class="secondary" type="button">Refresh connection</button>
+      </div>
+      <div class="settings-form">
+        <label>Requirements model
+          <select id="settingsRequirementModel" disabled><option value="">Connect to LiteLLM first</option></select>
+          <span>Selects project requirements and proposes their criticality and required levels.</span>
+        </label>
+        <label>Rating assistant model
+          <select id="settingsRatingModel" disabled><option value="">Connect to LiteLLM first</option></select>
+          <span>Interprets client evidence and suggests observable assessment states.</span>
+        </label>
+      </div>
+      <div class="settings-policy-note">
+        <strong>Human review remains mandatory</strong>
+        <p>AI outputs are suggestions only. Requirement profiles and assessment ratings are applied manually by the consultant.</p>
+      </div>
+      <footer class="settings-footer"><button id="doneModelSettings" class="primary-action" type="button">Done</button></footer>
+    </section>
+  </div>
+
+  <div id="assessmentAssistantModal" class="assistant-modal" hidden>
+    <section class="assistant-dialog" role="dialog" aria-modal="true" aria-labelledby="assistantTitle">
+      <header class="assistant-dialog-head">
+        <div>
+          <p class="eyebrow">AI assessment assistant</p>
+          <h3 id="assistantTitle">Interpret this requirement</h3>
+        </div>
+        <button id="closeAssessmentAssistant" class="icon-button" type="button" aria-label="Close AI assessment assistant">&times;</button>
+      </header>
+      <div id="assessmentAssistantRequirement" class="assistant-requirement"></div>
+      <label class="assistant-context-label">Client context for this requirement
+        <textarea id="assessmentAssistantContext" rows="7" placeholder="Describe what the client has in place, what is known, and any uncertainty."></textarea>
+      </label>
+      <div class="assistant-actions">
+        <button id="requestAssessmentSuggestion" class="primary-action" type="button">Suggest assessment</button>
+        <button id="applyAssessmentSuggestion" class="secondary" type="button" disabled>Apply suggestion</button>
+      </div>
+      <p id="assessmentAssistantStatus" class="assistant-status">Only the context entered here is sent to the configured LiteLLM endpoint. The consultant remains responsible for the final assessment.</p>
+      <div id="assessmentAssistantResult" class="assistant-result" hidden></div>
+      <section id="assessmentAssistantFollowUp" class="assistant-follow-up" hidden>
+        <label class="assistant-follow-up-label">Additional client evidence
+          <textarea id="assessmentAssistantFollowUpContext" rows="3" placeholder="Add the client’s answer to the follow-up question."></textarea>
+        </label>
+        <button id="refineAssessmentSuggestion" class="secondary" type="button">Refine suggestion</button>
+      </section>
+    </section>
+  </div>
+  <script src="data/demo-projects.js"></script>
+  <script src="data/browser-requirement-data.js?v=readiness-calibration-20260804b"></script>
+  <script src="data/library-dedup-llm-config.js"></script>
+  <script src="app.js?v=model-labels-20260804"></script>
+</body>
+</html>
