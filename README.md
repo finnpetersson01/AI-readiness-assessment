@@ -10,6 +10,81 @@ The demonstration data is stored in `data/demo-projects.js` so the application c
 2. Conversational internal knowledge access
 3. Email order-intent extraction into ERP
 
+## How it works
+
+<table>
+<tr>
+<td width="38%" valign="top">
+
+**1. Import the project set**
+
+Upload standardized project workbooks, or load the three built-in demo projects to try the full pipeline immediately.
+
+</td>
+<td><img src="docs/screenshots/01-project-upload.png" width="560"></td>
+</tr>
+<tr>
+<td width="38%" valign="top">
+
+**2. Confirm the normalized project cards**
+
+Each imported project is parsed into a structured card: business problem, proposed solution, scale, users and expected requirement signals.
+
+</td>
+<td><img src="docs/screenshots/02-project-cards.png" width="560"></td>
+</tr>
+<tr>
+<td width="38%" valign="top">
+
+**3. Generate a live requirement proposal**
+
+Connects to any OpenAI-compatible endpoint (LiteLLM shown here, a local Ollama model works too) to draft a project-specific requirement profile from the 110-entry catalog, including any genuinely new requirements it proposes.
+
+</td>
+<td><img src="docs/screenshots/03-requirement-generation.png" width="560"></td>
+</tr>
+<tr>
+<td width="38%" valign="top">
+
+**4. The consultant stays in control**
+
+Every AI-proposed requirement is editable: include or exclude it, adjust importance and required level, with the reasoning behind each selection one click away.
+
+</td>
+<td><img src="docs/screenshots/04-consultant-review.png" width="560"></td>
+</tr>
+<tr>
+<td width="38%" valign="top">
+
+**5. Compare readiness and evidence side by side**
+
+The readiness score combines weighted baseline maturity with a nonlinear penalty for unmet critical requirements. Evidence coverage is tracked separately, so missing information is never silently treated as readiness.
+
+</td>
+<td><img src="docs/screenshots/05-results.png" width="560"></td>
+</tr>
+<tr>
+<td width="38%" valign="top">
+
+**6. Turn a completed assessment into a reusable record**
+
+Closing out a project captures delivery outcomes and lessons, and prepares a structured export for the shared use-case library.
+
+</td>
+<td><img src="docs/screenshots/06-library-entry.png" width="560"></td>
+</tr>
+<tr>
+<td width="38%" valign="top">
+
+**7. Browse the underlying requirement catalog**
+
+110 reusable entries (67 families plus 43 project-pattern variants) across 11 categories, each one traceable to where it came from.
+
+</td>
+<td><img src="docs/screenshots/07-catalog.png" width="560"></td>
+</tr>
+</table>
+
 ## Demonstration workflow
 
 1. Upload one or more standardized demo project workbooks, or use the built-in quick-load button.
