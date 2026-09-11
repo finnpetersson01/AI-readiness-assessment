@@ -1,10 +1,23 @@
-# AI Project Readiness Assessment - Version 2
+# AI Project Readiness Assessment
 
-This is a separate, project-first prototype. It does not depend on fixed use-case IDs or the Version 1 prefilter and weighting matrix.
+*Many AI projects stall for reasons that have little to do with the model: the data isn't accessible, processes aren't documented, or governance arrives after the prototype is built. This prototype checks for those gaps before a project starts.*
 
-Current status: functional end-to-end demonstration of the downstream readiness workflow. Standardized Excel project import and live LiteLLM-supported requirement selection are implemented through the local server. The three curated demo projects can be taken from external project workbooks through requirement selection, consultant review, client assessment and transparent results.
+It takes a shortlisted AI project and turns it into a structured readiness assessment:
 
-The demonstration data is stored in `data/demo-projects.js` so the application continues to work when opened directly as a local file. The scenario contains:
+1. An LLM drafts the requirements the project depends on, such as data, process documentation, governance and risk, drawing on a catalog of 110 reusable requirements.
+2. A consultant reviews and edits the draft before the client sees it.
+3. Consultant and client assess each requirement together on a 0–4 scale.
+4. The tool calculates a readiness score, flags every critical gap and recommends one of four next steps, from "Do not pursue now" to "Ready for discovery / MVP planning".
+
+The LLM proposes and people decide. Scoring is deterministic and explainable: an unmet critical requirement carries an extra penalty that grows with the size of the gap, and open unknowns keep a score unconfirmed instead of assuming readiness. Completed projects are exported to a library with their outcomes and lessons, so the catalog can improve over time.
+
+**Background:** I designed the framework as the main deliverable of my master's practical semester (FH Münster), spent in OMMAX's Digital Strategy and Execution team. This repository is an independent second version. It contains no client or company data, and the three demo projects are fictional. It is a prototype: the scoring weights are heuristic and have not yet been calibrated against live projects.
+
+**Technical status**
+
+**Current status:** functional end-to-end demonstration of the downstream readiness workflow. Standardized Excel project import and live LiteLLM-supported requirement selection are implemented through the local server. The three curated demo projects can be taken from external project workbooks through requirement selection, consultant review, client assessment and transparent results.
+
+The **demonstration data** is stored in `data/demo-projects.js` so the application continues to work when opened directly as a local file. The scenario contains:
 
 1. AI-assisted service request resolution
 2. Conversational internal knowledge access
